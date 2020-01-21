@@ -20,7 +20,7 @@ public class AnswerEntity {
     @Column(unique = true)
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private String uid;
-    @ManyToOne
-    private QuestionEntity question;
+    // @ManyToOne
+    // private QuestionEntity question;
     private String answer;
 }

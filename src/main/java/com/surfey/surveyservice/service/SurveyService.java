@@ -42,7 +42,7 @@ public class SurveyService {
                                     .questions(surveyEntity.getQuestions()
                                             .stream()
                                             .map(questionEntity -> Question.builder()
-                                                    .id(surveyEntity.getId())
+                                                    .uid(surveyEntity.getUid())
                                                     .answers(questionEntity.getAnswers()
                                                             .stream()
                                                             .map(answerEntity -> Answer.builder()

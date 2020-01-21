@@ -22,7 +22,8 @@ public class SurveyEntity {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private String uid;
     // @JoinColumn(name = "surveyId", referencedColumnName = "id")
-    @OneToMany(mappedBy = "survey", cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "surveyId")
     private List<QuestionEntity> questions;
     private String name;
 }

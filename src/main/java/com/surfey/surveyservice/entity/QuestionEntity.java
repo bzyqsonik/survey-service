@@ -20,9 +20,10 @@ public class QuestionEntity {
     private int id;
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private String uid;
-    @ManyToOne
-    private SurveyEntity survey;
-    @OneToMany(mappedBy = "question", cascade = CascadeType.ALL)
+    // @ManyToOne
+    // private SurveyEntity survey;
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "questionId")
     private List<AnswerEntity> answers;
     private String content;
 }

@@ -6,7 +6,7 @@ import java.util.List;
 
 @Value @Builder @AllArgsConstructor(access = AccessLevel.PRIVATE) @NoArgsConstructor(force = true, access = AccessLevel.PRIVATE)
 public class Question {
-    int id;
+    String uid;
     String content;
     List<Answer> answers;
 }
