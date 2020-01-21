@@ -19,8 +19,10 @@ public class SurveyEntity {
     @Id
     @GeneratedValue
     private int id;
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    private String uid;
     // @JoinColumn(name = "surveyId", referencedColumnName = "id")
-    @OneToMany(mappedBy = "survey")
+    @OneToMany(mappedBy = "survey", cascade = CascadeType.ALL)
     private List<QuestionEntity> questions;
     private String name;
 }

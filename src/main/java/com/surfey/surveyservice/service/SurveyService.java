@@ -1,9 +1,7 @@
 package com.surfey.surveyservice.service;
 
 import com.surfey.surveyservice.entity.SurveyEntity;
-import com.surfey.surveyservice.model.Questions;
-import com.surfey.surveyservice.model.Survey;
-import com.surfey.surveyservice.model.Surveys;
+import com.surfey.surveyservice.model.*;
 import com.surfey.surveyservice.repository.SurveyRepository;
 import lombok.AllArgsConstructor;
 import lombok.Value;
@@ -12,6 +10,8 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
 
 @Service
 @AllArgsConstructor
@@ -32,26 +32,26 @@ public class SurveyService {
     */
 
     public Surveys findAll(boolean loadRelated) {
-        surveyRepository.save(new SurveyEntity(0, Collections.emptyList(), "name"));
         if (loadRelated)
             return null; // surveyRepository.findAllWithRelated();
         else {
-            List<Survey> surveys = new ArrayList<>();
-            for (SurveyEntity surveyEntity : surveyRepository.findAll()) {
-                /*
-                surveys.add(
-                        Survey.builder()
-                                .name(surveyEntity.getName())
-                                .questions(
-                                        Questions.builder()
-                                                .questions()
-                                )
-                                .build()
-                );
-
-                 */
-            }
-            return Surveys.builder().surveys(surveys).build();
+            return Surveys.builder().surveys(
+                    surveyRepository.findAll().stream()
+                            .map(surveyEntity -> Survey.builder()
+                                    .name(surveyEntity.getName())
+                                    .questions(surveyEntity.getQuestions()
+                                            .stream()
+                                            .map(questionEntity -> Question.builder()
+                                                    .id(surveyEntity.getId())
+                                                    .answers(questionEntity.getAnswers()
+                                                            .stream()
+                                                            .map(answerEntity -> Answer.builder()
+                                                                    .content(answerEntity.getAnswer())
+                                                                    .uid(answerEntity.getUid()).build()).collect(Collectors.toList()))
+                                                    .content(questionEntity.getContent())
+                                                    .build())
+                                            .collect(Collectors.toList()))
+                                    .build()).collect(Collectors.toList())).build();
         }
     }
 

@@ -10,7 +10,7 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface SurveyRepository extends CrudRepository<SurveyEntity, Integer> {
+public interface SurveyRepository extends JpaRepository<SurveyEntity, Integer> {
 
     /*
     public Surveys findAllWithRelated() {
