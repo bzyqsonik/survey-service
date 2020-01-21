@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.UUID;
 
 @Getter
 @Setter
@@ -19,8 +20,6 @@ public class AnswerEntity {
     private int id;
     @Column(unique = true)
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    private String uid;
-    // @ManyToOne
-    // private QuestionEntity question;
+    private UUID uuid;
     private String answer;
 }

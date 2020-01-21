@@ -1,13 +1,13 @@
 package com.surfey.surveyservice.entity;
 
 import com.surfey.surveyservice.model.Question;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 import javax.persistence.*;
 import java.util.List;
+import java.util.UUID;
 
 @Getter
 @Setter
@@ -20,10 +20,11 @@ public class SurveyEntity {
     @GeneratedValue
     private int id;
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    private String uid;
-    // @JoinColumn(name = "surveyId", referencedColumnName = "id")
+    private UUID uuid;
     @OneToMany(cascade = CascadeType.ALL)
+    @Fetch(FetchMode.SUBSELECT)
     @JoinColumn(name = "surveyId")
+    @NonNull
     private List<QuestionEntity> questions;
     private String name;
 }
