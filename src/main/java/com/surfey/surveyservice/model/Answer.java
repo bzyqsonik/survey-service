@@ -6,6 +6,6 @@ import lombok.*;
 @Builder @AllArgsConstructor(access = AccessLevel.PRIVATE) @NoArgsConstructor(force = true, access = AccessLevel.PRIVATE)
 public class Answer {
     String uid;
-    int questionId;
-    String answer;
+    Question question;
+    String content;
 }

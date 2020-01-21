@@ -14,11 +14,13 @@ import javax.persistence.*;
 @Table(name = "Answer")
 @NoArgsConstructor
 public class AnswerEntity {
-    @Id @GeneratedValue
+    @Id
+    @GeneratedValue
     private int id;
     @Column(unique = true)
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private String uid;
-    private int questionId;
+    @ManyToOne
+    private QuestionEntity question;
     private String answer;
 }

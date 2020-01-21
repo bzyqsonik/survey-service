@@ -5,10 +5,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.List;
 
 @Getter
 @Setter
@@ -17,8 +15,12 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "Question")
 public class QuestionEntity {
-    @Id @GeneratedValue
+    @Id
+    @GeneratedValue
     private int id;
-    private int surveyId;
+    @ManyToOne
+    private SurveyEntity survey;
+    @OneToMany(mappedBy = "question")
+    private List<AnswerEntity> answers;
     private String content;
 }

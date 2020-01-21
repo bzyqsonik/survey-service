@@ -5,6 +5,6 @@ import lombok.*;
 @Value @Builder @AllArgsConstructor(access = AccessLevel.PRIVATE) @NoArgsConstructor(force = true, access = AccessLevel.PRIVATE)
 public class Question {
     int id;
-    int surveyId;
+    Survey survey;
     String content;
 }

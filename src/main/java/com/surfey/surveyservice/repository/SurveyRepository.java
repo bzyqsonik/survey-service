@@ -1,15 +1,18 @@
 package com.surfey.surveyservice.repository;
 
+import com.surfey.surveyservice.entity.SurveyEntity;
 import com.surfey.surveyservice.model.Questions;
 import com.surfey.surveyservice.model.Survey;
 import com.surfey.surveyservice.model.Surveys;
 import lombok.AllArgsConstructor;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-@AllArgsConstructor
-public class SurveyRepository {
+public interface SurveyRepository extends CrudRepository<SurveyEntity, Integer> {
 
+    /*
     public Surveys findAllWithRelated() {
         return null;
     }
@@ -26,11 +29,11 @@ public class SurveyRepository {
         return null;
     }
 
-    public Questions findQuestionsWithRelated() {
+    public Questions findQuestionsWithRelated(int surveyId) {
         return null;
     }
 
-    public Questions findQuestions() {
+    public Questions findQuestions(int surveyId) {
         return null;
     }
 
@@ -54,4 +57,6 @@ public class SurveyRepository {
     public Questions findAnswer(int surveyId, int questionId, int answerId) {
         return null;
     }
+    *
+     */
 }

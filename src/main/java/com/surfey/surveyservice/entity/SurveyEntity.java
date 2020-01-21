@@ -6,10 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.List;
 
 @Getter
@@ -21,7 +18,9 @@ import java.util.List;
 public class SurveyEntity {
     @Id
     @GeneratedValue
-    int id;
-    // tu nie było adnotacji dlatego hibernate wypluwał błąd
-    //private List<Question> questions;
+    private int id;
+    // @JoinColumn(name = "surveyId", referencedColumnName = "id")
+    @OneToMany(mappedBy = "survey")
+    private List<QuestionEntity> questions;
+    private String name;
 }

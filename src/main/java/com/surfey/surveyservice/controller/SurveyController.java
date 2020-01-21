@@ -1,9 +1,8 @@
 package com.surfey.surveyservice.controller;
 
-import com.surfey.surveyservice.model.Answer;
 import com.surfey.surveyservice.model.Questions;
-import com.surfey.surveyservice.model.Surveys;
 import com.surfey.surveyservice.model.Survey;
+import com.surfey.surveyservice.model.Surveys;
 import com.surfey.surveyservice.service.SurveyService;
 import lombok.AllArgsConstructor;
 import lombok.Value;
@@ -48,10 +47,9 @@ public class SurveyController {
     }
 
     /**
-     *
-     * @param surveyId Specifies the UID of the requested survey
+     * @param surveyId   Specifies the UID of the requested survey
      * @param questionId Specifies the UID of the requested question
-     * @param answerId Specifies the UID of the requested answer
+     * @param answerId   Specifies the UID of the requested answer
      * @return JSON object of the requested answers
      */
     @GetMapping("/{surveyId}/questions/{questionId}/answers/{answerId}")
