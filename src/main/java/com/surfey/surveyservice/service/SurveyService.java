@@ -16,16 +16,22 @@ import java.util.stream.Collectors;
 
 @Service
 @AllArgsConstructor
-@Value
+@Value //USUN TO NA BOGA
 public class SurveyService {
 
+    //PRIVATE FINAL
     SurveyRepository surveyRepository;
     SurveyConverter surveyConverter;
 
+    //Jebac ta flage, jak dla mnie to laduj wszystko jak leci
+    //Ten serwis powinien zwracac kolekcje Surveyow, dopiero na poziomie kontrolera powinien byc opakowany w Surveys
+    //Jebac ta flage, ale jak juz to argument powinien byc final
     public Surveys findAll(boolean loadRelated) {
         if (loadRelated)
             return Surveys.builder().surveys(
                     surveyRepository.findAll().stream()
+            //Kazda operacja streamu powinna byc w innej linii, czyli collect zrzuc nizej
+            //toList() zaimportuj statycznie
                             .map(surveyConverter::convertEntityToSurveyWithRelated).collect(Collectors.toList())).build();
         else
             return Surveys.builder().surveys(
@@ -33,6 +39,7 @@ public class SurveyService {
                             .map(surveyConverter::convertEntityToSurveyWithoutRelated).collect(Collectors.toList())).build();
     }
 
+    //Jebac flage i argumety powinny byc final
     public Survey find(UUID surveyId, boolean loadRelated) {
         if (loadRelated)
             return surveyConverter.convertEntityToSurveyWithRelated(surveyRepository.findByUuid(surveyId));
