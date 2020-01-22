@@ -1,4 +1,5 @@
 package com.surfey.surveyservice.service;
+// masz literowke + pakiet glowny ja bym nazwal po prostu com.survey
 
 import com.surfey.surveyservice.entity.SurveyEntity;
 import com.surfey.surveyservice.model.Answer;
