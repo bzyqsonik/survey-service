@@ -12,14 +12,21 @@ import java.util.UUID;
 @Setter
 @AllArgsConstructor
 @Entity
-@Table(name = "Answer")
+@Table(name = "Answer") 
 @NoArgsConstructor
+//@Data
+//@Builder
+//@NoArgsConstructor(access = PRIVATE, force = true)
+//@AllArgsConstructor(access = PRIVATE)
+//@Entity(table(?) = "answers")
+// tabele nie nazywaja sie duza litera i powinny byc w liczbie mnogiej
 public class AnswerEntity {
     @Id
-    @GeneratedValue
+    @GeneratedValue //strategy = IDENTITY
     private int id;
     @Column(unique = true)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE) // To nie jest generated value
+    // uuid jest final, nie bedzie sie zmienial
     private UUID uuid;
     private String answer;
 }
