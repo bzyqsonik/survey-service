@@ -15,16 +15,25 @@ import java.util.UUID;
 @NoArgsConstructor
 @Entity
 @Table(name = "Survey")
+//@Data
+//@Builder
+//@NoArgsConstructor(access = PRIVATE, force = true)
+//@AllArgsConstructor(access = PRIVATE)
+//@Entity(table(?) = "surveys")
+// tabele nie nazywaja sie duza litera i powinny byc w liczbie mnogiej
 public class SurveyEntity {
     @Id
-    @GeneratedValue
+    @GeneratedValue // strategy = IDENTITY
     private int id;
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE) // to nie jest generated
+    // @NonNull
+    // final 
     private UUID uuid;
-    @OneToMany(cascade = CascadeType.ALL)
-    @Fetch(FetchMode.SUBSELECT)
-    @JoinColumn(name = "surveyId")
+    @OneToMany(cascade = CascadeType.ALL) //static import
+    @Fetch(FetchMode.SUBSELECT) //static import
+    @JoinColumn(name = "surveyId") //survey_id
     @NonNull
-    private List<QuestionEntity> questions;
-    private String name;
+    private List<QuestionEntity> questions; //final
+    //@NonNull
+    private String name; //final - chyba nie bedzie zmieniane
 }
