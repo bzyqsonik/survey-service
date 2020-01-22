@@ -13,5 +13,6 @@ import java.util.UUID;
 
 @Repository
 public interface SurveyRepository extends JpaRepository<SurveyEntity, Integer> {
+    // Powinienes tu zwracac Optional<SurveyEntity> i w serwisie operowac na optionalach
     SurveyEntity findByUuid(UUID uuid);
 }
